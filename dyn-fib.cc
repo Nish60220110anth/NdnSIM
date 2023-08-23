@@ -159,12 +159,69 @@ int main(int argc, char* argv[]) {
 
   consHelper.SetPrefix("prefix-1");
 
+  for (const std::tuple<int, int, int>& pr : consumerAppNodeTime) {
+    int nodeId = std::get<0>(pr) - 1, s = std::get<1>(pr), e = std::get<2>(pr);
+    ns3::ApplicationContainer appCont = consHelper.Install(ns3::NodeList::GetNode(0));
+    // can use application container directly becoz we have installed only one app in each node
+    // to set start time and end time
+    // appCont.Start(ns3::Seconds(s)), appCont.Stop(ns3::Seconds(e));
+  }
+
+  // consHelper.SetPrefix("prefix-3");
+
+  // ns3::ApplicationContainer appCont = consHelper.Install(consCont.Get(0));
+  // ns3::ApplicationContainer::Iterator lastApp = --appCont.End();
+
+  // (*lastApp)->SetStartTime(ns3::Seconds(16));
+  // (*lastApp)->SetStopTime(ns3::Seconds(30));
+
+  // consHelper.SetPrefix("prefix-2");
+
+  // appCont = consHelper.Install(consCont.Get(0));
+  // lastApp = --appCont.End();
+
+  // (*lastApp)->SetStartTime(ns3::Seconds(31));
+  // (*lastApp)->SetStopTime(ns3::Seconds(45));
+
+  // consHelper.SetPrefix("prefix-1");
+
+  // appCont = consHelper.Install(consCont.Get(1));
+  // lastApp = --appCont.End();
+
+  // (*lastApp)->SetStartTime(ns3::Seconds(16));
+  // (*lastApp)->SetStopTime(ns3::Seconds(30));
+
+  // consHelper.SetPrefix("prefix-3");
+
+  // appCont = consHelper.Install(consCont.Get(1));
+  // lastApp = --appCont.End();
+
+  // (*lastApp)->SetStartTime(ns3::Seconds(31));
+  // (*lastApp)->SetStopTime(ns3::Seconds(45));
+
+  // consHelper.SetPrefix("prefix-2");
+
+  // appCont = consHelper.Install(consCont.Get(2));
+  // lastApp = --appCont.End();
+
+  // (*lastApp)->SetStartTime(ns3::Seconds(16));
+  // (*lastApp)->SetStopTime(ns3::Seconds(30));
+
+  // consHelper.SetPrefix("prefix-1");
+
+  // appCont = consHelper.Install(consCont.Get(2));
+  // lastApp = --appCont.End();
+
+  // (*lastApp)->SetStartTime(ns3::Seconds(31));
+  // (*lastApp)->SetStopTime(ns3::Seconds(45));
+
   routingHelper.CalculateAllPossibleRoutes();
 
-  ns3::ndn::L3RateTracer::InstallAll("./scratch/dyn-fib-l3ratetrace.txt");
-  ns3::ndn::CsTracer::InstallAll("./scratch/dyn-fib-cstrace.txt",ns3::Seconds(2));
-  ns3::ndn::AppDelayTracer::InstallAll("./scratch/dyn-fib-appdelaytrace.txt");
-  
+  // ns3::ndn::L3RateTracer::InstallAll("./scratch/dyn-fib-l3ratetrace.txt");
+  // ns3::ndn::CsTracer::InstallAll("./scratch/dyn-fib-cstrace.txt",ns3::Seconds(2));
+  // ns3::ndn::AppDelayTracer::InstallAll("./scratch/dyn-fib-appdelaytrace.txt");
+  // ns3::L2Tracer::("./scratch/dyn-fib-l2ratetrace.txt");
+
   ns3::GlobalValue::Bind("SimulatorImplementationType", ns3::StringValue("ns3::DistributedSimulatorImpl"));
 
   ns3::Simulator::Stop(ns3::Seconds(50));
